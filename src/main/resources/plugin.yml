@@ -1,4 +1,4 @@
-name: ${project.artifactId}
+name: ${project.name}
 main: fr.pinath.Main
 version: ${project.version}
-author: Pinath
+author: [Pinath]
