@@ -1,4 +1,4 @@
 name: ${project.name}
-main: fr.pinath.Main
+main: fr.pinath.Tools
 version: ${project.version}
 author: [Pinath]
