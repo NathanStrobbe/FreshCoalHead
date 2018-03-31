@@ -14,7 +14,7 @@ public class FreshCoalHead extends JavaPlugin {
     public void onEnable() {
         instance = this;
         getLogger().info(getDescription().getName() + " has been enabled !");
-        getCommand("head").setExecutor(new HeadCommand());
+        getCommand("head").setExecutor(new HeadCommand(this));
     }
 
     @Override
