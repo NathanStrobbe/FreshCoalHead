@@ -1,4 +1,7 @@
 name: ${project.name}
-main: fr.pinath.Tools
+main: fr.pinath.FreshCoalHead
 version: ${project.version}
 author: [Pinath]
+commands:
+  head:
+    description: Give a head
