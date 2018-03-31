@@ -1,5 +1,6 @@
 package fr.pinath.gui;
 
+import fr.pinath.listener.GUIListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,6 +15,7 @@ public class MainGUI extends GUI {
         super(plugin, player);
         inventory = Bukkit.createInventory(player, 54, "Choose a category");
         initializeContent();
+        plugin.getServer().getPluginManager().registerEvents(new GUIListener(inventory, player), plugin);
     }
 
     @Override
