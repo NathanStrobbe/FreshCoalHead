@@ -29,7 +29,9 @@ public class GUIListener implements Listener {
 
     @EventHandler
     public void onGUIClick(InventoryClickEvent e) {
-        if (e.getWhoClicked().equals(player) && e.getClickedInventory().equals(inventory)) {
+        if (e.getWhoClicked().equals(player)
+                && e.getClickedInventory() != null
+                && e.getClickedInventory().equals(inventory)) {
             e.setCancelled(true);
         }
     }
@@ -38,7 +40,6 @@ public class GUIListener implements Listener {
     public void onCloseGUI(InventoryCloseEvent e) {
         if (e.getPlayer().equals(player) && e.getInventory().equals(inventory)) {
             player.getInventory().setContents(content);
-            content = null;
         }
     }
 }
