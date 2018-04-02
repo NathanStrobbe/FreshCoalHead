@@ -1,4 +1,4 @@
-package fr.pinath.gui;
+package fr.pinath.skull;
 
 public enum Category {
     FOOD("food", "Food's Head"),

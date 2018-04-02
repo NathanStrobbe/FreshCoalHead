@@ -1,5 +1,6 @@
 package fr.pinath.gui;
 
+import fr.pinath.skull.Category;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
