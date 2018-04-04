@@ -1,10 +1,8 @@
 package fr.pinath.skull;
 
 import org.bukkit.Bukkit;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -23,7 +21,7 @@ public class DataSkull {
         this.body = "";
     }
 
-    public void connect() {
+    private void connect() {
         StringBuilder query = new StringBuilder().append(URL).append(category.getQuery());
         URL url;
         try {
@@ -43,19 +41,23 @@ public class DataSkull {
         }
     }
 
-    public List<JSONObject> collectData() {
+    public List<Skull> collectSkull() {
+        connect();
         List<JSONObject> heads = new ArrayList<>();
-        JSONParser parser = new JSONParser();
-        try {
-            JSONArray array = (JSONArray) parser.parse(body);
-            for (Object head : array) {
-                JSONObject object = (JSONObject) parser.parse(head.toString());
-                heads.add(object);
-            }
-        } catch (ParseException e) {
-            Bukkit.getLogger().severe(e.getMessage());
+        JSONArray array = new JSONArray(body);
+        for (Object head : array) {
+            JSONObject object = new JSONObject(head.toString());
+            heads.add(object);
         }
-        return heads;
+        return intoSkull(heads);
+    }
+
+    private List<Skull> intoSkull(List<JSONObject> heads) {
+        List<Skull> skulls = new ArrayList<>();
+        for (JSONObject head : heads) {
+            skulls.add(new Skull(head.getString("name"), head.getString("value")));
+        }
+        return skulls;
     }
 
     private String parseBody(String json) {
