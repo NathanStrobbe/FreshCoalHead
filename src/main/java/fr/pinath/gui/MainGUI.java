@@ -1,6 +1,7 @@
 package fr.pinath.gui;
 
-import fr.pinath.listener.GUIListener;
+import fr.pinath.listener.MainGUIListener;
+import fr.pinath.skull.Category;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ public class MainGUI extends GUI {
         super(plugin, player);
         inventory = Bukkit.createInventory(player, 54, "Choose a category");
         initializeContent();
-        plugin.getServer().getPluginManager().registerEvents(new GUIListener(inventory, player), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new MainGUIListener(inventory, player), plugin);
     }
 
     @Override
@@ -27,5 +28,15 @@ public class MainGUI extends GUI {
             inventory.setItem(i * 9, border);
             inventory.setItem((i + 1) * 9 - 1, border);
         });
+
+        for (int i = 0; i < Category.values().length; i++) {
+            int pos = i + 11;
+            if (i >= 5 && i <= 9) {
+                pos += 4;
+            } else if (i > 9) {
+                pos += 10;
+            }
+            inventory.setItem(pos, Category.values()[i].getSkull());
+        }
     }
 }

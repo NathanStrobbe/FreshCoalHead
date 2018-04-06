@@ -9,12 +9,13 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class GUIListener implements Listener {
-    private Inventory inventory;
-    private Player player;
+@SuppressWarnings("unused")
+public abstract class GUIListener implements Listener {
+    protected Inventory inventory;
+    protected Player player;
     private ItemStack[] content;
 
-    public GUIListener(Inventory inventory, Player player) {
+    GUIListener(Inventory inventory, Player player) {
         this.inventory = inventory;
         this.player = player;
     }
@@ -35,6 +36,9 @@ public class GUIListener implements Listener {
             e.setCancelled(true);
         }
     }
+
+    @EventHandler
+    public abstract void onSkullClick(InventoryClickEvent e);
 
     @EventHandler
     public void onCloseGUI(InventoryCloseEvent e) {
