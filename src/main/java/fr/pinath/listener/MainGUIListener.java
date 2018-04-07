@@ -30,7 +30,6 @@ public class MainGUIListener extends GUIListener {
                     new CategoryGUI(plugin, category, player).showGUI();
                 }
             }
-
         }
     }
 

@@ -1,6 +1,7 @@
 package fr.pinath.listener;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,8 +12,13 @@ public class CategoryGUIListener extends GUIListener {
         super(plugin, inventory, player);
     }
 
+    @EventHandler
     @Override
     public void onSkullClick(InventoryClickEvent e) {
-
+        if (e.getWhoClicked().equals(player)
+                && e.getClickedInventory().equals(inventory)) {
+            player.getWorld().dropItemNaturally(player.getLocation(), e.getCurrentItem());
+            player.closeInventory();
+        }
     }
 }
