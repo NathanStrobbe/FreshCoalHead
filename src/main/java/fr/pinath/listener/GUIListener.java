@@ -1,5 +1,6 @@
 package fr.pinath.listener;
 
+import fr.pinath.skull.Category;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,14 +9,21 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public abstract class GUIListener implements Listener {
+    protected JavaPlugin plugin;
     protected Inventory inventory;
     protected Player player;
     private ItemStack[] content;
 
-    GUIListener(Inventory inventory, Player player) {
+    GUIListener(JavaPlugin plugin, Inventory inventory, Player player) {
+        this.plugin = plugin;
         this.inventory = inventory;
         this.player = player;
     }
@@ -35,6 +43,10 @@ public abstract class GUIListener implements Listener {
                 && e.getClickedInventory().equals(inventory)) {
             e.setCancelled(true);
         }
+    }
+
+    protected List<String> getSkullNames() {
+        return Arrays.stream(Category.values()).map(Category::getTitle).collect(Collectors.toList());
     }
 
     @EventHandler

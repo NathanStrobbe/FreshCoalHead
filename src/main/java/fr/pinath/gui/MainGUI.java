@@ -16,7 +16,7 @@ public class MainGUI extends GUI {
         super(plugin, player);
         inventory = Bukkit.createInventory(player, 54, "Choose a category");
         initializeContent();
-        plugin.getServer().getPluginManager().registerEvents(new MainGUIListener(inventory, player), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new MainGUIListener(plugin, inventory, player), plugin);
     }
 
     @Override
