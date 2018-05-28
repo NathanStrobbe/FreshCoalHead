@@ -1,8 +1,6 @@
 package fr.pinath;
 
 import fr.pinath.command.HeadCommand;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -18,6 +16,6 @@ public class FreshCoalHead extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Bukkit.getOnlinePlayers().forEach(HumanEntity::closeInventory);
+        // Bukkit.getOnlinePlayers().forEach(HumanEntity::closeInventory);
     }
 }

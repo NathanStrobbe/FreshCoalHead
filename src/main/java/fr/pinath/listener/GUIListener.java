@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("unused")
 public abstract class GUIListener implements Listener {
     protected JavaPlugin plugin;
     protected Inventory inventory;

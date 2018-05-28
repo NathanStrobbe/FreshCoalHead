@@ -15,7 +15,9 @@ public class CategoryGUIListener extends GUIListener {
     @EventHandler
     @Override
     public void onSkullClick(InventoryClickEvent e) {
-        if (e.getWhoClicked().equals(player)
+        if (e != null && e.getWhoClicked() != null
+                && e.getWhoClicked().equals(player)
+                && e.getClickedInventory() != null
                 && e.getClickedInventory().equals(inventory)) {
             player.getWorld().dropItemNaturally(player.getLocation(), e.getCurrentItem());
             player.closeInventory();
