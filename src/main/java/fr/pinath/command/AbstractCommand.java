@@ -8,10 +8,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import static org.bukkit.ChatColor.RED;
 
+/**
+ * Represents a command execute from the server
+ *
+ * @author Nathan Strobbe
+ */
 public abstract class AbstractCommand implements CommandExecutor {
     protected JavaPlugin plugin;
 
-    public AbstractCommand(JavaPlugin plugin) {
+    AbstractCommand(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 

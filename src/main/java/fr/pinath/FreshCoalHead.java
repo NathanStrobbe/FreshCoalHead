@@ -4,7 +4,10 @@ import fr.pinath.command.HeadCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * @author Pinath
+ * Recover heads from website FreshCoal Heads
+ * @see <a href="http://freshcoal.com/mainapi.php">Fresh Coal</a>
+ *
+ * @author Nathan Strobbe
  */
 public class FreshCoalHead extends JavaPlugin {
 

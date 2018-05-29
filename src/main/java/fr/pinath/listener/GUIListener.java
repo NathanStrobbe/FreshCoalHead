@@ -1,5 +1,6 @@
 package fr.pinath.listener;
 
+import fr.pinath.gui.GUI;
 import fr.pinath.skull.Category;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +16,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Listener of a {@link GUI}.
+ * Configure it with events onOpen(), onClick, onClose()
+ *
+ * @author Nathan Strobbe
+ */
 public abstract class GUIListener implements Listener {
     protected JavaPlugin plugin;
     protected Inventory inventory;

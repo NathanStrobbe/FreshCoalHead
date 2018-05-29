@@ -10,6 +10,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
+/**
+ * Represents a Graphical User Interface of a Category. It contains the different heads of the category
+ *
+ * @author Nathan Strobbe
+ */
 public class CategoryGUI extends GUI {
     private Category category;
 

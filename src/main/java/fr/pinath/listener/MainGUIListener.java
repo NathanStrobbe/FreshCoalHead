@@ -1,6 +1,7 @@
 package fr.pinath.listener;
 
 import fr.pinath.gui.CategoryGUI;
+import fr.pinath.gui.MainGUI;
 import fr.pinath.skull.Category;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,6 +15,12 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
+/**
+ * Listener of {@link MainGUI}
+ * Load the different {@link CategoryGUI}
+ *
+ * @author Nathan Strobbe
+ */
 public class MainGUIListener extends GUIListener {
     private Map<Category, CategoryGUI> categoriesGUI;
 

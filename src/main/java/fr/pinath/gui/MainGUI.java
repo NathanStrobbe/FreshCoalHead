@@ -10,6 +10,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.stream.IntStream;
 
+/**
+ * Represents the main Graphical User Interface. It contains the categories
+ *
+ * @author Nathan Strobbe
+ */
 public class MainGUI extends GUI {
 
     public MainGUI(JavaPlugin plugin, Player player) {
@@ -19,6 +24,9 @@ public class MainGUI extends GUI {
         plugin.getServer().getPluginManager().registerEvents(new MainGUIListener(plugin, inventory, player), plugin);
     }
 
+    /**
+     * Initialise the content of the main GUI, including the items representing a category, a border, and a closing item
+     */
     @Override
     protected void initializeContent() {
         ItemStack border = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
