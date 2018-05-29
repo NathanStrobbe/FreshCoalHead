@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.stream.IntStream;
@@ -21,7 +22,7 @@ public class MainGUI extends GUI {
         super(plugin, player);
         inventory = Bukkit.createInventory(player, 54, "Choose a category");
         initializeContent();
-        plugin.getServer().getPluginManager().registerEvents(new MainGUIListener(plugin, inventory, player), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new MainGUIListener(plugin, this), plugin);
     }
 
     /**
@@ -48,5 +49,18 @@ public class MainGUI extends GUI {
         }
 
         inventory.setItem(38, getClosingItem());
+    }
+
+    /**
+     * Get the Barrier item representing the closed item of the GUI
+     *
+     * @return ItemStack a Barrier
+     */
+    private ItemStack getClosingItem() {
+        ItemStack barrier = new ItemStack(Material.BARRIER, 1);
+        ItemMeta meta = barrier.getItemMeta();
+        meta.setDisplayName("§l§4Close");
+        barrier.setItemMeta(meta);
+        return barrier;
     }
 }

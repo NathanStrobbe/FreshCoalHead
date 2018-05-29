@@ -1,10 +1,11 @@
 package fr.pinath.listener;
 
 import fr.pinath.gui.CategoryGUI;
-import org.bukkit.entity.Player;
+import fr.pinath.gui.GUI;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -14,8 +15,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class CategoryGUIListener extends GUIListener {
 
-    public CategoryGUIListener(JavaPlugin plugin, Inventory inventory, Player player) {
-        super(plugin, inventory, player);
+    public CategoryGUIListener(JavaPlugin plugin, GUI gui) {
+        super(plugin, gui);
     }
 
     /**
@@ -30,8 +31,16 @@ public class CategoryGUIListener extends GUIListener {
                 && e.getWhoClicked().equals(player)
                 && e.getClickedInventory() != null
                 && e.getClickedInventory().equals(inventory)) {
-            player.getWorld().dropItemNaturally(player.getLocation(), e.getCurrentItem());
-            player.closeInventory();
+            ItemStack clickedItem = e.getCurrentItem();
+            if (clickedItem != null) {
+                if (clickedItem.getType().equals(Material.ARROW)) {
+                    player.closeInventory();
+                    ((CategoryGUI) this.gui).getPreviousGUI().showGUI();
+                } else {
+                    player.getWorld().dropItemNaturally(player.getLocation(), e.getCurrentItem());
+                    player.closeInventory();
+                }
+            }
         }
     }
 }

@@ -26,12 +26,14 @@ public abstract class GUIListener implements Listener {
     protected JavaPlugin plugin;
     protected Inventory inventory;
     protected Player player;
+    protected GUI gui;
     private ItemStack[] content;
 
-    GUIListener(JavaPlugin plugin, Inventory inventory, Player player) {
+    GUIListener(JavaPlugin plugin, GUI gui) {
         this.plugin = plugin;
-        this.inventory = inventory;
-        this.player = player;
+        this.gui = gui;
+        this.inventory = gui.getInventory();
+        this.player = gui.getPlayer();
     }
 
     @EventHandler

@@ -1,10 +1,7 @@
 package fr.pinath.gui;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -34,11 +31,11 @@ public abstract class GUI {
         player.openInventory(inventory);
     }
 
-    ItemStack getClosingItem() {
-        ItemStack barrier = new ItemStack(Material.BARRIER, 1);
-        ItemMeta meta = barrier.getItemMeta();
-        meta.setDisplayName("§l§4Close");
-        barrier.setItemMeta(meta);
-        return barrier;
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
