@@ -38,5 +38,7 @@ public class MainGUI extends GUI {
             }
             inventory.setItem(pos, Category.values()[i].getSkull());
         }
+
+        inventory.setItem(38, getClosingItem());
     }
 }
