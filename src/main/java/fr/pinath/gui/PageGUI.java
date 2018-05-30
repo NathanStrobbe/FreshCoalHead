@@ -26,9 +26,6 @@ public class PageGUI extends GUI {
         this.number = number;
         this.skulls = skulls;
         this.gui = gui;
-        this.inventory = Bukkit.createInventory(gui.getPlayer(), 54,
-                ((CategoryGUI) gui).getCategory().getTitle());
-        plugin.getServer().getPluginManager().registerEvents(new PageGUIListener(plugin, this), plugin);
     }
 
     public int getNumber() {
@@ -44,6 +41,13 @@ public class PageGUI extends GUI {
      */
     @Override
     protected void initializeContent() {
+        String inventoryTitle = ((CategoryGUI) gui).getCategory().getTitle() +
+                " (" +
+                (number + 1) +
+                "/" +
+                ((CategoryGUI) gui).getPages().size() +
+                ")";
+        this.inventory = Bukkit.createInventory(gui.getPlayer(), 54, inventoryTitle);
         for (int i = 0; i < skulls.size() && i < 45; i++) {
             inventory.setItem(i, skulls.get(i));
         }
@@ -54,6 +58,7 @@ public class PageGUI extends GUI {
         if (((CategoryGUI) gui).getPages().size() > number + 1) {
             inventory.setItem(51, getNextItem());
         }
+        plugin.getServer().getPluginManager().registerEvents(new PageGUIListener(plugin, this), plugin);
     }
 
     /**
