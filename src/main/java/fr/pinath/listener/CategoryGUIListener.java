@@ -30,13 +30,24 @@ public class CategoryGUIListener extends GUIListener {
         if (e != null && e.getWhoClicked() != null
                 && e.getWhoClicked().equals(player)
                 && e.getClickedInventory() != null
-                && e.getClickedInventory().equals(inventory)) {
+                && gui != null
+                && ((CategoryGUI) gui).getCurrentPage() != null
+                && e.getClickedInventory().equals(((CategoryGUI) gui).getCurrentPage().getInventory())) {
             ItemStack clickedItem = e.getCurrentItem();
             if (clickedItem != null) {
+                CategoryGUI categoryGUI = (CategoryGUI) gui;
                 if (clickedItem.getType().equals(Material.ARROW)) {
                     player.closeInventory();
-                    ((CategoryGUI) this.gui).getPreviousGUI().showGUI();
-                } else {
+                    categoryGUI.getPreviousGUI().showGUI();
+                } else if (clickedItem.equals(categoryGUI.getCurrentPage().getPreviousItem())) {
+                    // TODO: 30/05/2018 display the correct page
+                    player.closeInventory();
+                    categoryGUI.showGUI();
+                } else if (clickedItem.equals(categoryGUI.getCurrentPage().getNextItem())) {
+                    // TODO: 30/05/2018 display the correct page
+                    player.closeInventory();
+                    categoryGUI.showGUI();
+                } else if (clickedItem.getType().equals(Material.SKULL_ITEM)) {
                     player.getWorld().dropItemNaturally(player.getLocation(), e.getCurrentItem());
                     player.closeInventory();
                 }
