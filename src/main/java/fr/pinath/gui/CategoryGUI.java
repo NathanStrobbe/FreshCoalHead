@@ -58,18 +58,14 @@ public class CategoryGUI extends GUI {
     protected void initializeContent() {
         pages = new ArrayList<>();
         List<Skull> skulls = new DataSkull(category).collectSkull();
-        int from = 0;
-        int to = 45;
-        for (int i = 0; i < skulls.size(); i++) {
+        int i = 0;
+        for (int from = 0, to = 45; from <= skulls.size(); from += 45, to += 45) {
             if (to > skulls.size()) {
-                to = skulls.size();
+                pages.add(i, new PageGUI(this.plugin, this.getPlayer(), i, skulls.subList(from, skulls.size()), this));
+            } else {
+                pages.add(i, new PageGUI(this.plugin, this.getPlayer(), i, skulls.subList(from, to), this));
             }
-            pages.add(i, new PageGUI(this.plugin, this.getPlayer(), i, skulls.subList(from, to), this));
-            from += 45;
-            to += 45;
-            if (from > skulls.size()) {
-                break;
-            }
+            i++;
         }
         pages.forEach(PageGUI::initializeContent);
     }
