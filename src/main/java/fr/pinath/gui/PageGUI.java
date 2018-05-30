@@ -1,11 +1,13 @@
 package fr.pinath.gui;
 
+import fr.pinath.listener.PageGUIListener;
 import fr.pinath.skull.Skull;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
@@ -14,29 +16,34 @@ import java.util.List;
  *
  * @author Nathan Strobbe
  */
-public class PageGUI {
+public class PageGUI extends GUI {
     private int number;
     private List<Skull> skulls;
     private GUI gui;
-    private Inventory inventory;
 
-    PageGUI(int number, List<Skull> skulls, GUI gui) {
+    PageGUI(JavaPlugin plugin, Player player, int number, List<Skull> skulls, GUI gui) {
+        super(plugin, player);
         this.number = number;
         this.skulls = skulls;
         this.gui = gui;
         this.inventory = Bukkit.createInventory(gui.getPlayer(), 54,
                 ((CategoryGUI) gui).getCategory().getTitle());
-    }
-
-    public Inventory getInventory() {
-        return inventory;
+        plugin.getServer().getPluginManager().registerEvents(new PageGUIListener(plugin, this), plugin);
     }
 
     public int getNumber() {
         return number;
     }
 
-    void initializeContent() {
+    public GUI getGUI() {
+        return gui;
+    }
+
+    /**
+     * Initialize heads and options items as "Previous", "Back" and "Next"
+     */
+    @Override
+    protected void initializeContent() {
         for (int i = 0; i < skulls.size() && i < 45; i++) {
             inventory.setItem(i, skulls.get(i));
         }
@@ -49,6 +56,9 @@ public class PageGUI {
         }
     }
 
+    /**
+     * Display the current page to the Player
+     */
     public void showPage() {
         ((CategoryGUI) gui).setCurrentPage(this);
         gui.getPlayer().openInventory(inventory);

@@ -1,6 +1,5 @@
 package fr.pinath.gui;
 
-import fr.pinath.listener.CategoryGUIListener;
 import fr.pinath.skull.Category;
 import fr.pinath.skull.DataSkull;
 import fr.pinath.skull.Skull;
@@ -26,8 +25,9 @@ public class CategoryGUI extends GUI {
         this.category = category;
         this.previousGUI = previousGUI;
         initializeContent();
-        plugin.getServer().getPluginManager().registerEvents(new CategoryGUIListener(plugin, this), plugin);
     }
+
+    //--region Getter and setter
 
     protected void setCurrentPage(PageGUI pageGUI) {
         this.currentPage = pageGUI;
@@ -41,9 +41,15 @@ public class CategoryGUI extends GUI {
         return pages;
     }
 
+    public GUI getPreviousGUI() {
+        return previousGUI;
+    }
+
     protected Category getCategory() {
         return category;
     }
+
+    //--endregion
 
     /**
      * Initialize the pages of the category GUI
@@ -58,7 +64,7 @@ public class CategoryGUI extends GUI {
             if (to > skulls.size()) {
                 to = skulls.size();
             }
-            pages.add(i, new PageGUI(i, skulls.subList(from, to), this));
+            pages.add(i, new PageGUI(this.plugin, this.getPlayer(), i, skulls.subList(from, to), this));
             from += 45;
             to += 45;
             if (from > skulls.size()) {
@@ -73,9 +79,5 @@ public class CategoryGUI extends GUI {
         if (!pages.isEmpty()) {
             pages.get(0).showPage();
         }
-    }
-
-    public GUI getPreviousGUI() {
-        return previousGUI;
     }
 }

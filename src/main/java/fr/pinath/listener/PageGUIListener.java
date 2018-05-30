@@ -2,6 +2,7 @@ package fr.pinath.listener;
 
 import fr.pinath.gui.CategoryGUI;
 import fr.pinath.gui.GUI;
+import fr.pinath.gui.PageGUI;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -13,9 +14,9 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author Nathan Strobbe
  */
-public class CategoryGUIListener extends GUIListener {
+public class PageGUIListener extends GUIListener {
 
-    public CategoryGUIListener(JavaPlugin plugin, GUI gui) {
+    public PageGUIListener(JavaPlugin plugin, GUI gui) {
         super(plugin, gui);
     }
 
@@ -30,12 +31,10 @@ public class CategoryGUIListener extends GUIListener {
         if (e != null && e.getWhoClicked() != null
                 && e.getWhoClicked().equals(player)
                 && e.getClickedInventory() != null
-                && gui != null
-                && ((CategoryGUI) gui).getCurrentPage() != null
-                && e.getClickedInventory().equals(((CategoryGUI) gui).getCurrentPage().getInventory())) {
+                && e.getClickedInventory().equals(inventory)) {
             ItemStack clickedItem = e.getCurrentItem();
             if (clickedItem != null) {
-                CategoryGUI categoryGUI = (CategoryGUI) gui;
+                CategoryGUI categoryGUI = (CategoryGUI) ((PageGUI) gui).getGUI();
                 if (clickedItem.getType().equals(Material.ARROW)) {
                     player.closeInventory();
                     categoryGUI.getPreviousGUI().showGUI();
