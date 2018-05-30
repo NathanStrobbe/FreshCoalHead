@@ -40,13 +40,13 @@ public class CategoryGUIListener extends GUIListener {
                     player.closeInventory();
                     categoryGUI.getPreviousGUI().showGUI();
                 } else if (clickedItem.equals(categoryGUI.getCurrentPage().getPreviousItem())) {
-                    // TODO: 30/05/2018 display the correct page
                     player.closeInventory();
-                    categoryGUI.showGUI();
+                    int number = categoryGUI.getCurrentPage().getNumber();
+                    categoryGUI.getPages().get(number - 1).showPage();
                 } else if (clickedItem.equals(categoryGUI.getCurrentPage().getNextItem())) {
-                    // TODO: 30/05/2018 display the correct page
                     player.closeInventory();
-                    categoryGUI.showGUI();
+                    int number = categoryGUI.getCurrentPage().getNumber();
+                    categoryGUI.getPages().get(number + 1).showPage();
                 } else if (clickedItem.getType().equals(Material.SKULL_ITEM)) {
                     player.getWorld().dropItemNaturally(player.getLocation(), e.getCurrentItem());
                     player.closeInventory();

@@ -37,7 +37,7 @@ public class CategoryGUI extends GUI {
         return currentPage;
     }
 
-    protected List<PageGUI> getPages() {
+    public List<PageGUI> getPages() {
         return pages;
     }
 
