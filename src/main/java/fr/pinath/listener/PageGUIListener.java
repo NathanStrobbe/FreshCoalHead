@@ -36,14 +36,11 @@ public class PageGUIListener extends GUIListener {
             if (clickedItem != null) {
                 CategoryGUI categoryGUI = (CategoryGUI) ((PageGUI) gui).getGUI();
                 if (clickedItem.getType().equals(Material.ARROW)) {
-                    player.closeInventory();
                     categoryGUI.getPreviousGUI().showGUI();
                 } else if (clickedItem.equals(categoryGUI.getCurrentPage().getPreviousItem())) {
-                    player.closeInventory();
                     int number = categoryGUI.getCurrentPage().getNumber();
                     categoryGUI.getPages().get(number - 1).showPage();
                 } else if (clickedItem.equals(categoryGUI.getCurrentPage().getNextItem())) {
-                    player.closeInventory();
                     int number = categoryGUI.getCurrentPage().getNumber();
                     categoryGUI.getPages().get(number + 1).showPage();
                 } else if (clickedItem.getType().equals(Material.SKULL_ITEM)) {
